@@ -17,3 +17,11 @@
     font-size: 0.8em;
     text-align: center;
 }
+
+.Visible {
+    visibility: visible;
+}
+
+.Invisible {
+    visibility: hidden;
+}

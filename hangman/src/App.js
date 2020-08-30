@@ -9,7 +9,7 @@ function App() {
         <div className="App">
             <h1>HANGMAN</h1>
             <Computer />
-            <HangedMan />
+            <HangedMan stage="0" />
             <Player />
         </div>
     );

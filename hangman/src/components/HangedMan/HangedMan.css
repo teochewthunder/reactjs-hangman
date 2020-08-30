@@ -3,3 +3,31 @@
     height: 400px;
     outline: 1px solid blue;
 }
+
+.HangedMan svg{
+    width: 100%;
+    height: 100%;    
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.HangedMan svg .gallows{
+	stroke: rgba(0, 0, 0, 1);
+	stroke-width: 6;
+	fill: none;
+}
+
+.HangedMan svg .rope{
+	stroke: rgba(150, 150, 150, 1);
+	stroke-width: 4;
+}
+
+.HangedMan svg .man{
+	stroke: rgba(100, 100, 100, 1);
+	stroke-width: 4;
+	fill: none;
+}
+
+.HangedMan svg .hidden{
+    stroke: rgba(255, 255, 255, 1);
+}
+
