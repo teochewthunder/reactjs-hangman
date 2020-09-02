@@ -1,16 +1,17 @@
 .App {
     width: 600px;
-    outline: 1px solid red;
     margin: 0 auto 0 auto;
 }
 
 .App h1 {
     text-align: center;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+    font-size: 4em;
 }
 
 .Message {
     padding: 3px 0 3px 0;
+    margin-bottom: 5px;
     background-color: rgba(100, 100, 255, 0.5);
     color: rgba(255, 255, 255, 1);
     font-weight: bold;

@@ -2,16 +2,14 @@ import React from 'react';
 import './Letters.css';
 
 function Letters(props) {
-	let letters = props.word.split(""); 
-
     return (
     	<div className="Letters">
     	{
-	      letters.map((item, index) => (
-	        <div key={"letter_" + index} className="Letter">
-	          {item}
-	        </div>
-	      ))  		
+			props.letters.map((item, index) => (
+				<div key={'letter_' + index} className={item.show ? 'Letter' : 'Letter hidden'}>
+				  	{(item.show && props.context === 'player') || props.conext === 'computer' ? item.letter : ''}					
+				</div>
+			))		
     	}
     	</div>   
     );

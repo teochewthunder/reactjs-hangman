@@ -1,5 +1,61 @@
 .Player {
     width: 100%;
-    height: 100px;
-    outline: 1px solid green;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
+
+.Middle {
+	width: 10%;
+	height: 150px;
+	background-color: rgba(0, 0, 0, 1);
+	float: left;
+	font-size: 2em;
+	color: rgba(255, 255, 255, 1);
+}
+
+.SelectLetter, .GuessWord {
+	background-color: rgba(0, 0, 0, 1);
+	width: 45%;
+	height: 150px;
+}
+
+.SelectLetter {
+	float: left;
+}
+
+.GuessWord {
+	float: right;
+}
+
+.GuessWord input{
+	padding: 0.5em;
+	width: 13em;
+	border-radius: 5px;
+	border: 0px solid red;
+}
+
+.GuessWord button{
+	padding: 0.5em;
+	width: 8em;
+	border-radius: 5px;
+	border: 0px solid red;
+	background-color: rgba(100, 100, 100, 1);
+	color: rgba(0, 0, 0, 1);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.GuessWord button:hover{
+	background-color: rgba(200, 200, 200, 1);
+	color: rgba(100, 100, 100, 1);
+}
+
+.SelectLetter, .GuessWord {
+	text-align: center;
+}
+
+.SelectLetter h3, .GuessWord h3 {
+	color: rgba(255, 255, 255, 1);
+}
+
