@@ -7,12 +7,14 @@ import Player from './components/Player';
 function App() {
     let word, letters;
 
-    word = 'computertests';
-    letters = word.split('');
+    const [mysteryWord, setMysteryWord] = useState('computertests');
+    letters = mysteryWord.split('');
 
     let computer_letters = letters.map((x)=>{
         return {letter:x, show:false};
     });
+
+    const [mysteryLetters, setMysteryLetters] = useState(computer_letters);
 
     word = 'abcdefghijklmnopqrstuvwxyz';
     letters = word.split('');
@@ -21,14 +23,25 @@ function App() {
         return {letter:x, show:true};
     });
 
-    let stage = 0;
+    const [stage, setStage] = useState(0);
+    const [message, setMessage] = useState('');
 
     return (
         <div className="App">
             <h1>HANGMAN</h1>
             <HangedMan stage={stage}/>
-            <Computer letters={computer_letters} />
-            <Player letters={player_letters} />
+            <Computer 
+                mysteryLetters={mysteryLetters}
+                message={message} 
+            />
+            <Player 
+                letters={player_letters} 
+                stage={stage} setStage={setStage} 
+                mysteryWord={mysteryWord} 
+                mysteryLetters={mysteryLetters} 
+                setMysteryLetters={setMysteryLetters}
+                setMessage={setMessage}
+            />
         </div>
     );
 }

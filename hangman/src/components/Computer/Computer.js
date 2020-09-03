@@ -3,8 +3,8 @@ import './Computer.css';
 import Letters from '../Letters';
 
 function Computer(props) {
-	let message = 'loading...';
-	let letters = props.letters;
+	let message = props.message;
+	let letters = props.mysteryLetters;
 
     return (
     	<div className="Computer">
