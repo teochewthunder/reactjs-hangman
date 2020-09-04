@@ -3,14 +3,17 @@ import './Computer.css';
 
 function Computer(props) {
 	let message = props.message;
-	let mysteryLetters = props.mysteryLetters;
+	let mysteryWord = props.mysteryWord;
+	let guessedLetters = props.guessedLetters;
+
+	let mysteryLetters = mysteryWord.split('');
 
 	let mystery = mysteryLetters.map((item, index) => (
 		<div 
 			key={'letter_' + index} 
-			className={item.show ? 'Letter' : 'Letter hidden'}
+			className={guessedLetters.indexOf(item) !== -1 ? 'Letter' : 'Letter hidden'}
 		>
-		  	{item.show ? item.letter : ''}					
+		  	{guessedLetters.indexOf(item) !== -1 ? item : ''}					
 		</div>
 	))
 

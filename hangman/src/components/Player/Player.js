@@ -3,30 +3,22 @@ import './Player.css';
 
 function Player(props) {
 	const [guessWord, setGuessWord] = useState('');	
+    const [usedLetters, setUsedLetters] = useState([]);
     
-    let temp_word = 'abcdefghijklmnopqrstuvwxyz';
-    let tempLetters = temp_word.split('');
-
-    let playerLetters = tempLetters.map((x)=>{
-        return {letter:x, show:true};
-    });
-
-    const [letters, setLetters] = useState(playerLetters);
+    let playerLetters = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 	let stage = props.stage;
 	let setStage = props.setStage;
+	let guessedLetters = props.guessedLetters;
+	let setGuessedLetters = props.setGuessedLetters;
 	let mysteryWord = props.mysteryWord;
-	let mysteryLetters = props.mysteryLetters;
-	let setMysteryLetters = props.setMysteryLetters;
 	let setMessage = props.setMessage;
+
+	let mysteryLetters = mysteryWord.split('');
 
 	let BtnConfirm_click = ()=> {
 		if (guessWord === mysteryWord) {
-			let tempLetters = mysteryLetters.map((x) => {
-				return {letter:x.letter, show:true};
-			});
-
-			setMysteryLetters(tempLetters);
+			setGuessedLetters(mysteryLetters);
 			setStage(0);
 			setMessage("You Win!");
 		} else {
@@ -40,43 +32,32 @@ function Player(props) {
 	}	
 
 	let LetterClick = (letter) => {
-		if (props.context === 'computer') return;
+		if (usedLetters.indexOf(letter) !== -1) return;
 
-		let unusedLetter = letters.filter((item) => {
-			return (item.letter === letter && item.show)
-		});	
-
-		if (unusedLetter.length === 0) return;
+		let tempArray = usedLetters;
+		tempArray.push(letter);
+		setUsedLetters(tempArray);
 
 		UseLetter(letter);
-
-		playerLetters = letters.map((item) => {
-			return {letter:item.letter, show:!(item.letter === letter)};
-		});
-
-		setLetters(playerLetters);
-		console.log(letters)
 	};
 
 	let UseLetter = (letter) => {
-		if (mysteryWord.indexOf(letter) === -1) {
+		if (mysteryLetters.indexOf(letter) === -1) {
 			setStage(stage + 1);
 		} else {
-			mysteryLetters = mysteryLetters.map((item) => {
-				return {letter:item.letter, show:(item.letter === letter)};
-			});
-
-			setMysteryLetters(mysteryLetters);
+			let tempArray = guessedLetters;
+			tempArray.push(letter);
+			setGuessedLetters(tempArray);
 		}		
 	}
 
-	let keyboard = letters.map((item, index) => (
+	let keyboard = playerLetters.map((item, index) => (
 		<div 
 			key={'letter_' + index} 
-			className={item.show ? 'Key' : 'Key hidden'}
-			onClick={()=>{LetterClick(item.letter);}}
+			className={usedLetters.indexOf(item) === -1 ? 'Key' : 'Key hidden'}
+			onClick={()=>{LetterClick(item);}}
 		>
-	  		{item.letter}					
+	  		{item}					
 		</div>
 		)
 	);
