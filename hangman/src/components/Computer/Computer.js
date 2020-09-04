@@ -1,15 +1,27 @@
 import React from 'react';
 import './Computer.css';
-import Letters from '../Letters';
 
 function Computer(props) {
 	let message = props.message;
-	let letters = props.mysteryLetters;
+	let mysteryLetters = props.mysteryLetters;
+
+	let mystery = mysteryLetters.map((item, index) => (
+		<div 
+			key={'letter_' + index} 
+			className={item.show ? 'Letter' : 'Letter hidden'}
+		>
+		  	{item.show ? item.letter : ''}					
+		</div>
+	))
 
     return (
     	<div className="Computer">
-			<div className="Message">{message}</div> 
-			<Letters letters={letters} context="computer"/> 
+			<div className="Message">
+				{ message }
+			</div> 
+			<div className="Letters">
+				{ mystery }
+			</div>
     	</div> 
     );
 }
