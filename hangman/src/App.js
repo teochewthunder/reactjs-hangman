@@ -4,12 +4,15 @@ import HangedMan from './components/HangedMan';
 import Computer from './components/Computer';
 import Player from './components/Player';
 
+import GetRandomIndex from './utils/GetRandomIndex';
+
 function App() {
-    const [mysteryWord, setMysteryWord] = useState('greatness');
+    const [wordList, setWordList] = useState(['', 'ability', 'transparent', 'culture', 'average']);
+    const [mysteryWord, setMysteryWord] = useState(wordList[0]);
     const [guessedLetters, setGuessedLetters] = useState([]);
 
     const [stage, setStage] = useState(-1);
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('Welcome to Hangman! Click button to Begin');
     const [messageContext, setMessageContext] = useState('');
     
     const setMessageAndContext = (strMessage, strContext)=> {
@@ -20,7 +23,8 @@ function App() {
     useEffect(() => {
         if (message !== '') return;
 
-        setMessageAndContext("Guess the mystery word", "");
+        setMessageAndContext('Guess the mystery word', '');
+        setMysteryWord(wordList[GetRandomIndex(wordList.length)]);
     });
     
     return (

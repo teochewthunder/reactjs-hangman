@@ -12,6 +12,7 @@
 	float: left;
 	font-size: 2em;
 	color: rgba(255, 255, 255, 1);
+	text-align: center;
 }
 
 .SelectLetter, .GuessWord {
