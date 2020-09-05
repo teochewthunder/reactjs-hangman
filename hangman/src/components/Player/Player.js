@@ -29,6 +29,13 @@ function Player(props) {
 		}
 	};
 
+	const BtnBegin_click = ()=> {
+		setStage(0);
+		setGuessedLetters([]);
+		setUsedLetters([]);
+		setMessageAndContext("", "");
+	};
+
 	const RemoveIllegalCharacters = (word) => {
 		let newWord = word.replace(/[^a-z]/gi, '');
 		return newWord.toLowerCase();
@@ -80,8 +87,8 @@ function Player(props) {
 		)
 	);
 
-    return (
-    	<div className="Player">
+	const dashboard = (
+		<>
 			<div className="SelectLetter">
 				<h3>Select A Letter</h3>
 				<div className="Keyboard">
@@ -104,8 +111,28 @@ function Player(props) {
 					Confirm
 				</button>
 			</div>
-    	</div>   
-    );
+		</>
+	)
+    
+	if (stage === -1) {
+		return (
+		<button className="BtnBegin" onClick={ ()=>{BtnBegin_click();}}>
+			Begin
+		</button>	    	
+		);
+	} else if (stage === 6) {
+		return (
+		<button className="BtnBegin" onClick={ ()=>{BtnBegin_click();}}>
+			Replay
+		</button>	    	 
+		);
+	} else {
+		return (
+    	<div className="Player">
+    		{ dashboard }
+    	</div> 
+    	);  		
+	}   
 }
 
 export default Player;
