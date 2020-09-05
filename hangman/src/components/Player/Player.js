@@ -12,26 +12,30 @@ function Player(props) {
 	let guessedLetters = props.guessedLetters;
 	let setGuessedLetters = props.setGuessedLetters;
 	let mysteryWord = props.mysteryWord;
-	let setMessage = props.setMessage;
+	let setMessageAndContext = props.setMessageAndContext;
 
 	let mysteryLetters = mysteryWord.split('');
 
-	let BtnConfirm_click = ()=> {
+	const BtnConfirm_click = ()=> {
+		if (stage === 6 || stage === -1) return;
+
 		if (guessedWord === mysteryWord) {
 			setGuessedLetters(mysteryLetters);
-			setStage(0);
-			setMessage("You Win!");
+			setStage(-1);
+			setMessageAndContext("You Win!", "success");
 		} else {
 			setStage(stage + 1);
+			setMessageAndContext("You guessed '" + guessedWord + "'. Wrong!", "failure");
 		}
 	};
 
-	let RemoveIllegalCharacters = (word) => {
+	const RemoveIllegalCharacters = (word) => {
 		let newWord = word.replace(/[^a-z]/gi, '');
 		return newWord.toLowerCase();
 	}	
 
-	let LetterClick = (letter) => {
+	const LetterClick = (letter) => {
+		if (stage === 6 || stage === -1) return;
 		if (usedLetters.indexOf(letter) !== -1) return;
 
 		let tempArray = usedLetters;
@@ -41,16 +45,31 @@ function Player(props) {
 		UseLetter(letter);
 	};
 
-	let UseLetter = (letter) => {
+	const UseLetter = (letter) => {
 		if (mysteryLetters.indexOf(letter) === -1) {
 			setStage(stage + 1);
+			setMessageAndContext("You guessed '" + letter + "'. Wrong!", "failure");
+
+			if (stage === 5) {
+				setMessageAndContext("You have run out of tries!", "failure");
+			} 
 		} else {
 			guessedLetters.push(letter);
 			setGuessedLetters(guessedLetters);
+			setMessageAndContext("You guessed '" + letter + "'. Correct!", "success");
+
+			let unguessedLetters = mysteryLetters.filter((item)=>{
+				return guessedLetters.indexOf(item) === -1;
+			});
+
+			if (unguessedLetters.length === 0) {
+				setStage(-1);
+				setMessageAndContext("You Win!", "success");
+			}
 		}		
 	}
 
-	let keyboard = playerLetters.map((item, index) => (
+	const keyboard = playerLetters.map((item, index) => (
 		<div 
 			key={'letter_' + index} 
 			className={usedLetters.indexOf(item) === -1 ? 'Key' : 'Key hidden'}
@@ -72,11 +91,18 @@ function Player(props) {
 			<div className="Middle">
 				<br /><br />OR
 			</div>
-			<div className="guessedWord">
+			<div className="GuessWord">
 				<h3>Guess The Word</h3>
-				<input type="text" maxLength="13" value={guessedWord} onChange={(e)=>{ setguessedWord(RemoveIllegalCharacters(e.target.value)); }}/>
+				<input 
+					type="text" 
+					maxLength="13" 
+					value={ guessedWord } 
+					onChange={ (e)=>{ setguessedWord(RemoveIllegalCharacters(e.target.value)); }}
+				/>
 				<br /><br />
-				<button onClick={()=>{BtnConfirm_click();}} disabled={guessedWord.length === 0}>Confirm</button>
+				<button onClick={ ()=>{BtnConfirm_click();}} disabled={guessedWord.length === 0}>
+					Confirm
+				</button>
 			</div>
     	</div>   
     );
