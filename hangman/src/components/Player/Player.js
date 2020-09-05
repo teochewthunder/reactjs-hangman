@@ -28,6 +28,11 @@ function Player(props) {
 		} else {
 			setStage(stage + 1);
 			setMessageAndContext("You guessed '" + guessedWord + "'. Wrong!", "failure");
+
+			if (stage === 5) {
+				setMessageAndContext("You have run out of tries!", "failure");
+				setGuessedLetters(mysteryLetters);
+			} 
 		}
 	};
 
@@ -56,6 +61,7 @@ function Player(props) {
 
 			if (stage === 5) {
 				setMessageAndContext("You have run out of tries!", "failure");
+				setGuessedLetters(mysteryLetters);
 			} 
 		} else {
 			guessedLetters.push(letter);
