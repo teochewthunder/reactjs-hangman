@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Player.css';
 
+import RemoveIllegalCharacters from '../../utils/RemoveIllegalCharacters';
+
 function Player(props) {
 	const [guessedWord, setguessedWord] = useState('');	
     const [usedLetters, setUsedLetters] = useState([]);
@@ -35,11 +37,6 @@ function Player(props) {
 		setUsedLetters([]);
 		setMessageAndContext("", "");
 	};
-
-	const RemoveIllegalCharacters = (word) => {
-		let newWord = word.replace(/[^a-z]/gi, '');
-		return newWord.toLowerCase();
-	}	
 
 	const LetterClick = (letter) => {
 		if (stage === 6 || stage === -1) return;
