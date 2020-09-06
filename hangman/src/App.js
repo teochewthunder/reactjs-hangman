@@ -55,6 +55,8 @@ function App() {
             <h1>HANGMAN</h1>
             <HangedMan stage={ stage }/>
             <div className={ 'Message ' + messageContext }>
+                { isPending && "Loading..." }
+                { error && ('Error: ' + error.message) }
                 { message }
             </div> 
             <Computer 
