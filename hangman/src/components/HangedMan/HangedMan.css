@@ -38,3 +38,17 @@
     fill: rgba(255, 0, 0, 0);
 }
 
+g{
+	-webKit-transform-origin: 300px 0px;
+	transform-origin: 300px 0px;
+}
+
+.swing{
+	animation: swing 1s infinite;
+}
+
+@keyframes swing {
+  50% {-webkit-transform: rotate(-10deg);transform: rotate(-10deg);}
+  100% {-webkit-transform: rotate(10deg);transform: rotate(10deg);}
+}
+
