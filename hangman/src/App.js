@@ -8,7 +8,7 @@ import Player from './components/Player';
 import GetRandomIndex from './utils/GetRandomIndex';
 
 const fetchWordList = async () => {
-    const res = await fetch('https://random-word-api.herokuapp.com/word?number=20');
+    const res = await fetch('https://random-word-api.herokuapp.com/word?number=50');
     if (!res.ok) throw new Error(res.statusText)
     return res.json();
 };
@@ -20,7 +20,7 @@ function App() {
             let tempList = wordList;
 
             data.forEach((item)=> {
-                if (item.length <= 13) {
+                if (item.length >= 5 && item.length <= 13) {
                     tempList.push(item);
                 }
             });
