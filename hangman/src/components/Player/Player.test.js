@@ -83,4 +83,27 @@ describe("Player", () => {
 		expect(screen.queryByText("Select A Letter")).toBeInTheDocument();
 		expect(screen.queryByText("Guess The Word")).toBeInTheDocument();
 	});
+
+	it("should only allow letters to be input when guessing word", () => {
+		error = undefined;
+		mysteryWord = "evergreen";
+		setStage(3);
+
+	    render(
+	        <Player 
+	            stage={ stage } 
+	            setStage={ setStage } 
+	            mysteryWord={ mysteryWord } 
+	            guessedLetters={ guessedLetters }
+	            setGuessedLetters={ setGuessedLetters }
+	            setMessageAndContext={ setMessageAndContext }
+	            error={ error } 
+	        />
+	    );
+	    		
+		let txtGuessWord = screen.getByTestId('txtGuessWord');
+		userEvent.type(txtGuessWord, "xyz123-abc");
+
+		expect(txtGuessWord.value).toBe("xyzabc");
+	});
 });

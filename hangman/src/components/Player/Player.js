@@ -54,7 +54,7 @@ function Player(props) {
 			alert("Error has occured. Please reload.");
 			return;
 		};
-		
+
 		if (stage === 6 || stage === -1) return;
 		if (usedLetters.indexOf(letter) !== -1) return;
 
@@ -119,6 +119,7 @@ function Player(props) {
 					maxLength="13" 
 					value={ guessedWord } 
 					onChange={ (e)=>{ setguessedWord(RemoveIllegalCharacters(e.target.value)); }}
+					data-testid="txtGuessWord"
 				/>
 				<br /><br />
 				<button onClick={ ()=>{BtnConfirm_click();}} disabled={guessedWord.length === 0}>
