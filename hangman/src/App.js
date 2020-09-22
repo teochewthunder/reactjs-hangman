@@ -26,7 +26,7 @@ function App() {
             });
 
             setWordList(tempList);
-            console.log(wordList);
+            //console.log(wordList);
         }
     });
 
@@ -51,9 +51,9 @@ function App() {
     });
     
     return (
-        <div className="App" data-testid="app">       
+        <div className="App">       
             <h1>HANGMAN</h1>
-            <HangedMan stage={ stage } data-testid="hangedman"/>
+            <HangedMan stage={ stage } />
             <div>
                 { isPending && 'Loading...' }
             </div>
@@ -73,7 +73,6 @@ function App() {
                 setGuessedLetters={ setGuessedLetters }
                 setMessageAndContext={ setMessageAndContext }
                 error={ error } 
-                data-testid="player"
             />
         </div>
     );
