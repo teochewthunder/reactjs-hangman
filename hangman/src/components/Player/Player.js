@@ -15,6 +15,7 @@ function Player(props) {
 	let setGuessedLetters = props.setGuessedLetters;
 	let mysteryWord = props.mysteryWord;
 	let setMessageAndContext = props.setMessageAndContext;
+	let error = props.error;
 
 	let mysteryLetters = mysteryWord.split('');
 
@@ -37,6 +38,11 @@ function Player(props) {
 	};
 
 	const BtnBegin_click = ()=> {
+		if (error) {
+			alert("Error has occured. Please reload.");
+			return;
+		};
+
 		setStage(0);
 		setGuessedLetters([]);
 		setUsedLetters([]);
@@ -44,6 +50,11 @@ function Player(props) {
 	};
 
 	const LetterClick = (letter) => {
+		if (error) {
+			alert("Error has occured. Please reload.");
+			return;
+		};
+		
 		if (stage === 6 || stage === -1) return;
 		if (usedLetters.indexOf(letter) !== -1) return;
 

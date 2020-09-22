@@ -51,17 +51,19 @@ function App() {
     });
     
     return (
-        <div className="App">       
+        <div className="App" data-testid="app">       
             <h1>HANGMAN</h1>
-            <HangedMan stage={ stage }/>
-            <div className={ 'Message ' + messageContext }>
-                { isPending && "Loading..." }
-                { error && ('Error: ' + error.message) }
+            <HangedMan stage={ stage } data-testid="hangedman"/>
+            <div>
+                { isPending && 'Loading...' }
+            </div>
+            <div className={ 'Message ' + messageContext } data-testid="message">
                 { message }
             </div> 
             <Computer 
                 mysteryWord={ mysteryWord }
                 guessedLetters={ guessedLetters }
+                data-testid="computer"
             />
             <Player 
                 stage={ stage } 
@@ -70,6 +72,8 @@ function App() {
                 guessedLetters={ guessedLetters }
                 setGuessedLetters={ setGuessedLetters }
                 setMessageAndContext={ setMessageAndContext }
+                error={ error } 
+                data-testid="player"
             />
         </div>
     );
