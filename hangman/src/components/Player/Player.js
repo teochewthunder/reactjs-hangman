@@ -55,7 +55,7 @@ function Player(props) {
 			return;
 		};
 
-		if (stage === 6 || stage === -1) return;
+		if (stage === 5 || stage === -1) return;
 		if (usedLetters.indexOf(letter) !== -1) return;
 
 		let tempArray = usedLetters;
@@ -95,6 +95,7 @@ function Player(props) {
 			key={'letter_' + index} 
 			className={usedLetters.indexOf(item) === -1 ? 'Key' : 'Key hidden'}
 			onClick={()=>{LetterClick(item);}}
+			data-testid={'btnLetter_' + item} 
 		>
 	  		{item}					
 		</div>
