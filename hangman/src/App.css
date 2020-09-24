@@ -1,8 +1,6 @@
 .App {
     width: 600px;
     margin: 0 auto 0 auto;
-    max-width: 95%;
-    min-width: 300px;
 }
 
 .App h1 {
