@@ -57,13 +57,12 @@ function App() {
             <div>
                 { isPending && 'Loading...' }
             </div>
-            <div className={ 'Message ' + messageContext } data-testid="message">
+            <div className={ 'Message ' + messageContext }>
                 { message }
             </div> 
             <Computer 
                 mysteryWord={ mysteryWord }
                 guessedLetters={ guessedLetters }
-                data-testid="computer"
             />
             <Player 
                 stage={ stage } 
