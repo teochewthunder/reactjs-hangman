@@ -26,7 +26,7 @@ function App() {
             });
 
             setWordList(tempList);
-            console.log(wordList);
+            //console.log(wordList);
         }
     });
 
@@ -53,10 +53,11 @@ function App() {
     return (
         <div className="App">       
             <h1>HANGMAN</h1>
-            <HangedMan stage={ stage }/>
+            <HangedMan stage={ stage } />
+            <div>
+                { isPending && 'Loading...' }
+            </div>
             <div className={ 'Message ' + messageContext }>
-                { isPending && "Loading..." }
-                { error && ('Error: ' + error.message) }
                 { message }
             </div> 
             <Computer 
@@ -70,6 +71,7 @@ function App() {
                 guessedLetters={ guessedLetters }
                 setGuessedLetters={ setGuessedLetters }
                 setMessageAndContext={ setMessageAndContext }
+                error={ error } 
             />
         </div>
     );
