@@ -72,6 +72,7 @@ function App() {
                 setGuessedLetters={ setGuessedLetters }
                 setMessageAndContext={ setMessageAndContext }
                 error={ error } 
+                isPending={ isPending }
             />
         </div>
     );
