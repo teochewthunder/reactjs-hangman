@@ -18,6 +18,7 @@ let setMessageAndContext = (x)=> {
 };
 
 let error;
+let isPending;
 let mysteryWord;
 
 window.alert = ()=> {};
@@ -25,6 +26,7 @@ window.alert = ()=> {};
 describe("Player", () => {
 	it("should render with Begin button when game not started", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		setStage(-1);
 
@@ -36,7 +38,8 @@ describe("Player", () => {
 	            guessedLetters={ guessedLetters }
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
-	            error={ error } 
+	            error={ error }
+	            isPending={ isPending }
 	        />
 	    );
 
@@ -45,6 +48,7 @@ describe("Player", () => {
 
 	it("should render with Replay button when game over", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		setStage(6);
 
@@ -57,6 +61,7 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 
@@ -65,6 +70,7 @@ describe("Player", () => {
 
 	it("should render with Player dashboard component when game in progress", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		setStage(3);
 
@@ -76,7 +82,8 @@ describe("Player", () => {
 	            guessedLetters={ guessedLetters }
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
-	            error={ error } 
+	            error={ error }
+	            isPending={ isPending } 
 	        />
 	    );
 
@@ -112,6 +119,7 @@ describe("Player", () => {
 
 	it("should not react to button clicks if error", () => {
 		error = new Error("");
+		isPending = false;
 		mysteryWord = "evergreen";
 		setStage(-1);
 
@@ -124,6 +132,30 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
+	        />
+	    );
+
+		userEvent.click(screen.getByText("Begin"));
+		expect(screen.queryByText("Begin")).toBeInTheDocument();
+	});
+
+	it("should not react to button clicks if pending", () => {
+		error = undefined;
+		isPending = true;
+		mysteryWord = "evergreen";
+		setStage(-1);
+
+	    render(
+	        <Player 
+	            stage={ stage } 
+	            setStage={ setStage } 
+	            mysteryWord={ mysteryWord } 
+	            guessedLetters={ guessedLetters }
+	            setGuessedLetters={ setGuessedLetters }
+	            setMessageAndContext={ setMessageAndContext }
+	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 
@@ -133,6 +165,7 @@ describe("Player", () => {
 
 	it("should only allow letters to be input when guessing word", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		setStage(3);
 
@@ -145,6 +178,7 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 	    		
@@ -155,6 +189,7 @@ describe("Player", () => {
 
 	it("should end game if guessed word is correct", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		setStage(3);
 
@@ -167,6 +202,7 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 	    		
@@ -178,6 +214,7 @@ describe("Player", () => {
 
 	it("should increment stage if guessed word is incorrect", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		setStage(3);
 
@@ -190,6 +227,7 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 	    		
@@ -201,6 +239,7 @@ describe("Player", () => {
 
 	it("should handle if guessed letter is correct", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		guessedLetters = [];
 		setStage(3);
@@ -214,6 +253,7 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 	    		
@@ -225,6 +265,7 @@ describe("Player", () => {
 
 	it("should handle if guessed letter is incorrect", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		guessedLetters = [];
 		setStage(3);
@@ -238,6 +279,7 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 	    		
@@ -249,6 +291,7 @@ describe("Player", () => {
 
 	it("should handle if guessed letters win the game", () => {
 		error = undefined;
+		isPending = false;
 		mysteryWord = "evergreen";
 		guessedLetters = [];
 		setStage(3);
@@ -262,6 +305,7 @@ describe("Player", () => {
 	            setGuessedLetters={ setGuessedLetters }
 	            setMessageAndContext={ setMessageAndContext }
 	            error={ error } 
+	            isPending={ isPending }
 	        />
 	    );
 	    		
