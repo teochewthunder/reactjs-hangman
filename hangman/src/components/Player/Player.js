@@ -4,7 +4,7 @@ import './Player.css';
 import RemoveIllegalCharacters from '../../utils/RemoveIllegalCharacters';
 
 function Player(props) {
-	const [guessedWord, setguessedWord] = useState('');	
+	const [guessedWord, setGuessedWord] = useState('');	
     const [usedLetters, setUsedLetters] = useState([]);
     
     let playerLetters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -59,9 +59,8 @@ function Player(props) {
 		if (stage === 6 || stage === -1) return;
 		if (usedLetters.indexOf(letter) !== -1) return;
 
-		let tempArray = usedLetters;
-		tempArray.push(letter);
-		setUsedLetters(tempArray);
+		usedLetters.push(letter);
+		setUsedLetters(usedLetters);
 
 		UseLetter(letter);
 	};
@@ -120,7 +119,7 @@ function Player(props) {
 					type="text" 
 					maxLength="13" 
 					value={ guessedWord } 
-					onChange={ (e)=>{ setguessedWord(RemoveIllegalCharacters(e.target.value)); }}
+					onChange={ (e)=>{ setGuessedWord(RemoveIllegalCharacters(e.target.value)); }}
 					data-testid="txtGuessWord"
 				/>
 				<br /><br />

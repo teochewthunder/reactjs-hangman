@@ -34,7 +34,7 @@ function App() {
     const [mysteryWord, setMysteryWord] = useState(wordList[0]);
     const [guessedLetters, setGuessedLetters] = useState([]);
 
-    const [stage, setStage] = useState(-1);
+    const [stage, setStage] = useState(-1); 
     const [message, setMessage] = useState('Welcome to Hangman! Click button to Begin');
     const [messageContext, setMessageContext] = useState('');
     
