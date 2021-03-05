@@ -5,7 +5,7 @@ function HangedMan(props) {
     return (
     	<div className="HangedMan">
 			<svg>
-				<g className={ props.stage === 6 ? 'swing' : '' }>
+				<g className={ props.stage >= 6 ? 'swing' : '' }>
 					<line 
 						className="rope" 
 						x1="300" 
